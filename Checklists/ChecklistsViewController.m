@@ -28,12 +28,28 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 100;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChecklistItem"];
+    
+    UILabel *label = (UILabel *)[cell viewWithTag:1000];
+    
+    //dynamically change our prototype's cell label's text to the respective text based on which row it is in.
+    if (indexPath.row % 5 == 0) {
+        label.text = @"Walk the dog";
+    } else if (indexPath.row % 5 == 1) {
+        label.text = @"Brush my teeth";
+    } else if (indexPath.row % 5 == 2) {
+        label.text = @"Learn iOS Development";
+    } else if (indexPath.row % 5 == 3) {
+        label.text = @"Soccer Practice";
+    } else if (indexPath.row % 5 == 4) {
+        label.text = @"Eat ice cream";
+    }
+    
     return cell;
 }
 
