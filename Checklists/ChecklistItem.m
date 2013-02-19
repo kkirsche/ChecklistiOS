@@ -9,7 +9,6 @@
 #import "ChecklistItem.h"
 
 @implementation ChecklistItem
-@synthesize text, checked;
 
 - (void)toggleChecked
 {

@@ -94,11 +94,11 @@
 				2970D5E616D2EB2F00276F9D /* MainStoryboard.storyboard */,
 				2970D5E916D2EB2F00276F9D /* ChecklistsViewController.h */,
 				2970D5EA16D2EB2F00276F9D /* ChecklistsViewController.m */,
-				2970D5D516D2EB2F00276F9D /* Supporting Files */,
 				2970D5F116D3033B00276F9D /* ChecklistItem.h */,
 				2970D5F216D3033B00276F9D /* ChecklistItem.m */,
 				EE6FC56116D3BDEC0039EB4F /* AddItemViewController.h */,
 				EE6FC56216D3BDEC0039EB4F /* AddItemViewController.m */,
+				2970D5D516D2EB2F00276F9D /* Supporting Files */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";

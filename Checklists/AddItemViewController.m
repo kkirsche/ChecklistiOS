@@ -23,12 +23,7 @@
     }
     return self;
 }
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    [self.textField becomeFirstResponder];
-}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,6 +42,12 @@
 }
 
 #pragma mark - Table view data source
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.textField becomeFirstResponder];
+}
 
 - (IBAction)cancel
 {
@@ -66,12 +67,6 @@
     return nil;
 }
 
-- (void)viewDidUnload {
-    [self setTextField:nil];
-    [self setDoneBarButton:nil];
-    [super viewDidUnload];
-}
-
 - (BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     //Get the new text
@@ -79,6 +74,13 @@
     //Next check that the user input data. If newText length is not greater than 0, returns NO
     self.doneBarButton.enabled = ([newText length] > 0);
     return YES;
+}
+
+
+- (void)viewDidUnload {
+    [self setTextField:nil];
+    [self setDoneBarButton:nil];
+    [super viewDidUnload];
 }
 
 @end
