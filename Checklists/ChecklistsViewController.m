@@ -129,4 +129,14 @@
     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
+//add swipe to delete
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //when the "commitEditingStyle" method is present (it comes from the table view data source), the table view will automatically enable swipe-to-delete. All we have tod o is remove the item from our data model.
+    [items removeObjectAtIndex:indexPath.row];
+    //Next we just delete the corresponding row from the table view.
+    NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+    [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 @end
