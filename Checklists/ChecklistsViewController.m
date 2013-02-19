@@ -111,5 +111,22 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+- (IBAction)addItem
+{
+    //find out how many items are in the array "items". This number will be the index of the next position because of 0 base.
+    int newRowIndex = [items count];
+    
+    //create our new item to add to items
+    ChecklistItem *item = [[ChecklistItem alloc] init];
+    item.text = @"I am a new row";
+    item.checked = NO;
+    [items addObject:item];
+    
+    //We have to tell the table view about this new row, so it can add a new cell for that row. Table views use index-paths to identify rows, so first we make an NSIndexPath object that points to our new row, using the row number from the newRowIndex variable. This index-path object now points to row 5 (in section 0).
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
+    //we will use the table view method insertRowsAtIndexPaths to tell it about the new row but as its name implies this method actually lets you insert multiple rows at the same time. Instead of a single NSIndexPath object, we need to give it an array of index-paths. Not very convenient, but that's the way it is. [NSArray arrayWithObject:object] creates a one object array easily though.
+    NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+}
 
 @end
