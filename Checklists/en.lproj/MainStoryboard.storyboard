@@ -73,6 +73,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
+                                                        <action selector="done" destination="rDe-CZ-o0K" eventType="editingDidEndOnExit" id="PR7-RG-1Y2"/>
                                                         <outlet property="delegate" destination="rDe-CZ-o0K" id="4kN-NN-b2g"/>
                                                     </connections>
                                                 </textField>
@@ -158,9 +159,6 @@
         </class>
         <class className="ChecklistsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ChecklistsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addItem"/>
-            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
