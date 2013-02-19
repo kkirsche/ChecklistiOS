@@ -11,4 +11,9 @@
 @implementation ChecklistItem
 @synthesize text, checked;
 
+- (void)toggleChecked
+{
+    self.checked = !self.checked;
+}
+
 @end

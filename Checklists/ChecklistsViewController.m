@@ -52,6 +52,11 @@
     item.text = @"Eat ice cream";
     item.checked = YES;
     [items addObject:item];
+    
+    item = [[ChecklistItem alloc] init];
+    item.text = @"Testing the exercise before \"Cleaning Up Your Code\"";
+    item.checked = NO;
+    [items addObject:item];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,16 +71,19 @@
     return [items count];
 }
 
-- (void)configureCheckmarkForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCheckmarkForCell:(UITableViewCell *)cell withChecklistItem:(ChecklistItem *)item
 {
-    //Grab the item that the user pressed. This will let us use it's attributes such as .checked and .text
-    ChecklistItem *item = [items objectAtIndex:indexPath.row];
-    
     if (item.checked) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+}
+
+- (void)configureTextForCell:(UITableViewCell *)cell withChecklistItem:(ChecklistItem *)item
+{
+    UILabel *label = (UILabel *)[cell viewWithTag:1000];
+    label.text = item.text;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -85,10 +93,8 @@
     //Grab the item that the user pressed. This will let us use it's attributes such as .checked and .text
     ChecklistItem *item = [items objectAtIndex:indexPath.row];
     
-    UILabel *label = (UILabel *)[cell viewWithTag:1000];
-    label.text = item.text;
-    
-    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
+    [self configureTextForCell:cell withChecklistItem:item];
+    [self configureCheckmarkForCell:cell withChecklistItem:item];
     
     return cell;
 }
@@ -99,9 +105,9 @@
     
     //Grab the item that the user pressed. This will let us use it's attributes such as .checked and .text
     ChecklistItem *item = [items objectAtIndex:indexPath.row];
-    item.checked = !item.checked;
+    [item toggleChecked];
     
-    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
+    [self configureCheckmarkForCell:cell withChecklistItem:item];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
