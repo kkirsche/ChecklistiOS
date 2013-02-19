@@ -7,44 +7,51 @@
 //
 
 #import "ChecklistsViewController.h"
-#import "ChecklistItem.h";
+#import "ChecklistItem.h"
 
 @interface ChecklistsViewController ()
 
 @end
 
 @implementation ChecklistsViewController {
-    ChecklistItem *row0item;
-    ChecklistItem *row1item;
-    ChecklistItem *row2item;
-    ChecklistItem *row3item;
-    ChecklistItem *row4item;
+    NSMutableArray *items;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    row0item = [[ChecklistItem alloc] init];
-    row0item.text = @"Walk the dog";
-    row0item.checked = NO;
+    items = [[NSMutableArray alloc] initWithCapacity:20];
     
-    row1item = [[ChecklistItem alloc] init];
-    row1item.text = @"Brush my teeth";
-    row1item.checked = YES;
+    ChecklistItem *item;
     
-    row2item = [[ChecklistItem alloc] init];
-    row2item.text = @"Learn iOS Development";
-    row2item.checked = YES;
+    //Create the "item" object.
+    //Set the text and if it is checked or not.
+    //We then add the "item" object to Mutable array "items".
+    item = [[ChecklistItem alloc] init];
+    item.text = @"Walk the dog";
+    item.checked = NO;
+    [items addObject:item];
     
-    row3item = [[ChecklistItem alloc] init];
-    row3item.text = @"Soccer practice";
-    row3item.checked = NO;
+    item = [[ChecklistItem alloc] init];
+    item.text = @"Brush my teeth";
+    item.checked = YES;
+    [items addObject:item];
     
-    row4item = [[ChecklistItem alloc] init];
-    row4item.text = @"Eat ice cream";
-    row4item.checked = YES;
+    item = [[ChecklistItem alloc] init];
+    item.text = @"Learn iOS development";
+    item.checked = YES;
+    [items addObject:item];
     
+    item = [[ChecklistItem alloc] init];
+    item.text = @"Soccer practice";
+    item.checked = NO;
+    [items addObject:item];
+    
+    item = [[ChecklistItem alloc] init];
+    item.text = @"Eat ice cream";
+    item.checked = YES;
+    [items addObject:item];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,25 +62,16 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    //returns the number of rows within the NSMutableArray "items". 
+    return [items count];
 }
 
 - (void)configureCheckmarkForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    BOOL isChecked = NO;
-    if (indexPath.row == 0) {
-        isChecked = row0item.checked;
-    } else if (indexPath.row == 1) {
-        isChecked = row1item.checked;
-    } else if (indexPath.row == 2) {
-        isChecked = row2item.checked;
-    } else if (indexPath.row == 3) {
-        isChecked = row3item.checked;
-    } else if (indexPath.row == 4) {
-        isChecked = row4item.checked;
-    }
+    //Grab the item that the user pressed. This will let us use it's attributes such as .checked and .text
+    ChecklistItem *item = [items objectAtIndex:indexPath.row];
     
-    if (isChecked) {
+    if (item.checked) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -84,19 +82,11 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChecklistItem"];
     
-    UILabel *label = (UILabel *)[cell viewWithTag:1000];
+    //Grab the item that the user pressed. This will let us use it's attributes such as .checked and .text
+    ChecklistItem *item = [items objectAtIndex:indexPath.row];
     
-    if (indexPath.row == 0) {
-        label.text = row0item.text;
-    } else if (indexPath.row == 1) {
-        label.text = row1item.text;
-    } else if (indexPath.row == 2) {
-        label.text = row2item.text;
-    } else if (indexPath.row == 3) {
-        label.text = row3item.text;
-    } else if (indexPath.row == 4) {
-        label.text = row4item.text;
-    }
+    UILabel *label = (UILabel *)[cell viewWithTag:1000];
+    label.text = item.text;
     
     [self configureCheckmarkForCell:cell atIndexPath:indexPath];
     
@@ -107,17 +97,9 @@
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    if (indexPath.row == 0) {
-        row0item.checked = !row0item.checked;
-    } else if (indexPath.row == 1) {
-        row1item.checked = !row1item.checked;
-    } else if (indexPath.row == 2) {
-        row2item.checked = !row2item.checked;
-    } else if (indexPath.row == 3) {
-        row3item.checked = !row3item.checked;
-    } else if (indexPath.row == 4) {
-        row4item.checked = !row4item.checked;
-    }
+    //Grab the item that the user pressed. This will let us use it's attributes such as .checked and .text
+    ChecklistItem *item = [items objectAtIndex:indexPath.row];
+    item.checked = !item.checked;
     
     [self configureCheckmarkForCell:cell atIndexPath:indexPath];
     
