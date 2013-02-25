@@ -21,7 +21,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:self forKey:@"Text"];
+    [aCoder encodeObject:self.text forKey:@"Text"];
     [aCoder encodeBool:self.checked forKey:@"Checked"];
 }
 
