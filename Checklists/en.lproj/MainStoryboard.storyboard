@@ -59,10 +59,10 @@
             </objects>
             <point key="canvasLocation" x="617" y="86"/>
         </scene>
-        <!--Add Item View Controller - Add Item-->
+        <!--Item Detail View Controller - Add Item-->
         <scene sceneID="usI-Mt-viw">
             <objects>
-                <tableViewController id="rDe-CZ-o0K" customClass="AddItemViewController" sceneMemberID="viewController">
+                <tableViewController id="rDe-CZ-o0K" customClass="ItemDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="eUc-Y8-ds1">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
