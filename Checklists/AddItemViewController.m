@@ -33,6 +33,12 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    if (self.itemToEdit != nil) {
+        self.title = @"Edit Item";
+        self.textField.text = self.itemToEdit.text;
+        self.doneBarButton.enabled = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,11 +61,18 @@
 }
 - (IBAction)done
 {
-    ChecklistItem *item = [[ChecklistItem alloc] init];
-    item.text = self.textField.text;
-    item.checked = NO;
-    
-    [self.delegate addItemViewController:self didFinishAddingItem:item];
+    //check if the itemToEdit property contains an object. If not, we're adding a new item and we do the stuff we did before.
+    if (self.itemToEdit == nil) {
+        ChecklistItem *item = [[ChecklistItem alloc] init];
+        item.text = self.textField.text;
+        item.checked = NO;
+        
+        [self.delegate addItemViewController:self didFinishAddingItem:item];
+    } else {
+        self.itemToEdit.text = self.textField.text;
+        [self.delegate addItemViewController:self didFinishEditingItem:self.itemToEdit];
+    }
+
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
