@@ -118,7 +118,29 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Xl-wL-UFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1623" y="86"/>
+            <point key="canvasLocation" x="1639" y="802"/>
+        </scene>
+        <!--All Lists View Controller - Checklists-->
+        <scene sceneID="clo-1B-OUf">
+            <objects>
+                <tableViewController id="eaT-1d-81A" customClass="AllListsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="HW6-Ux-JVx">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="eaT-1d-81A" id="vrU-Io-MSw"/>
+                            <outlet property="delegate" destination="eaT-1d-81A" id="zri-aw-XvW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Checklists" id="PQ4-1c-rHh"/>
+                    <connections>
+                        <segue destination="FhL-m3-a2G" kind="push" identifier="ShowChecklist" id="JgS-Mj-96w"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AEM-w0-OfA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="66" y="-744"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rSC-qA-fxB">
@@ -131,12 +153,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="FhL-m3-a2G" kind="relationship" relationship="rootViewController" id="YJ4-80-f9f"/>
+                        <segue destination="eaT-1d-81A" kind="relationship" relationship="rootViewController" id="Aov-Q0-OTW"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZSG-pK-Lqz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="91" y="86"/>
+            <point key="canvasLocation" x="-500" y="-744"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Psb-BD-uzr">
@@ -157,6 +179,23 @@
             <point key="canvasLocation" x="1097" y="86"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="AllListsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AllListsViewController.h"/>
+        </class>
+        <class className="ChecklistsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChecklistsViewController.h"/>
+        </class>
+        <class className="ItemDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel"/>
+                <relationship kind="action" name="done"/>
+                <relationship kind="outlet" name="doneBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="textField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
